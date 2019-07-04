@@ -1,0 +1,44 @@
+---
+schema_version: v1.1.0
+timezone: Asia/Tokyo
+widgets:   
+  - id: development
+    type: menu
+    title: DEVELOPMENT TOOLS
+    content:
+      - category: "-"
+        name: "-"
+        description: "-"
+        command: "-"
+  - id: laravel
+    type: menu
+    title: LARAVEL
+    content:
+      - category: laravel
+        name: Docker Compose
+        description: Build and Run Docker Containers
+        command: docker-compose up -d
+  - id: infra
+    type: menu
+    title: INFRA
+    content:
+      - category: "-"
+        name: "-"
+        description: "-"
+        command: "-"
+layout:
+  - name: DASHBOARD
+    rows:
+      - height: 100%
+        cols:
+          - width: 6
+            stacks:
+              - id: development
+                height: 100%
+          - width: 6
+            stacks: 
+              - id: laravel
+                height: 50% 
+              - id: infra
+                height: 50%
+
