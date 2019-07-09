@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: laravel/php
-    container_name: app
+    container_name: template_laravel
     restart: unless-stopped
     tty: true
     environment:
@@ -22,11 +22,11 @@ services:
   #Nginx Service
   webserver:
     image: nginx:alpine
-    container_name: webserver
+    container_name: template_webserver
     restart: unless-stopped
     tty: true
     ports:
-      - "8080:80"
+      - "80:80"
       - "443:443"
     volumes:
       - ./:/var/www
@@ -37,6 +37,7 @@ services:
   #MySQL Service
   db:
     image: mysql:5.7
+    container_name: template_db
     environment:
       MYSQL_DATABASE: laravel
       MYSQL_USER: user
@@ -46,13 +47,14 @@ services:
       - dbdata:/var/lib/mysql/
       - ./ops/docker/laravel/mysql/my.cnf:/etc/mysql/my.cnf
     ports:
-      - "9090:3306"
+      - "3306:3306"
     networks:
       - app-network
  
   #PHP Myadmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.9
+    container_name: template_phpmyadmin
     links:
       - db:db
     ports:

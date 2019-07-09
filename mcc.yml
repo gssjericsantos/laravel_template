@@ -17,7 +17,7 @@ widgets:
       - category: laravel
         name: Docker Compose
         description: Build and Run Docker Containers
-        command: docker-compose up -d
+        command: ops/docker/laravel/build_image
   - id: infra
     type: menu
     title: INFRA
