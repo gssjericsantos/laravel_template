@@ -1,0 +1,16 @@
+#!/bin/bash
+
+containerNames=("template_laravel" "template_webserver" "template_db" "template_phpmyadmin")
+
+for containerName in ${containerNames[*]}
+do
+	if docker ps -aq -f name=$containerName;
+	then
+		echo "Stopping ${containerName} container..."
+		docker stop $containerName
+		echo "Deleting ${containerName} container..."
+		docker rm $containerName
+	fi
+done
+
+docker-compose up -d 
