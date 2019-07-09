@@ -13,4 +13,8 @@ do
 	fi
 done
 
-docker-compose up -d 
+docker run --rm -v $(pwd)/src/laravel:/app composer install
+cd src/laravel/
+cp .env.example .env.env 
+mv .env.env .env
+docker-compose up -d
